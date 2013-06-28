@@ -1,8 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone){
+    'backbone',
+    'text!../templates/sticker_button.html'
+], function($, _, Backbone, StickerButtonTemplate){
     'use strict';
 
     var Stickers = Backbone.View.extend({
@@ -13,10 +14,11 @@ define([
             'click .sticker-button': 'onStickerButtonClick'
         },
         onStickerButtonClick: function(){
-            alert('');
+            console.log('onStickerButtonClick');
         },
         render: function(){
-            this.$('.innerWrap').append('<div class="sticker-button">貼圖</div>');
+            console.log('rendering sticker button...');
+            this.$('textarea[name="add_comment_text"]').after(StickerButtonTemplate);
 
             return this;
         }

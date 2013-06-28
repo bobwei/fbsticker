@@ -24,6 +24,7 @@
     "content_scripts": [
         {
             "matches": ["http://www.facebook.com/*", "https://www.facebook.com/*"],
+            "run_at": "document_end",
             "css": [
                 ".tmp/styles/main.css"
                 // "app/bower_components/font-awesome/css/font-awesome.min.css"

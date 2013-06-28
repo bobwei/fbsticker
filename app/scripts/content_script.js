@@ -25,8 +25,10 @@ require(['jquery',
         ], function($, _, Backbone, Stickers){
     'use strict';
 
-    var stickers = new Stickers({
-        el: $('body')
+    $(function(){
+        var stickers = new Stickers({
+            el: $('body')
+        });
+        stickers.render();
     });
-    stickers.render();
 });
