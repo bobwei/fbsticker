@@ -12,7 +12,7 @@ define([
             fb_dtsg: ''
         },
         initialize: function(){
-
+            _.bindAll(this);
         },
         sync: function(method, model, options){
             if (method === 'read'){
@@ -31,7 +31,7 @@ define([
                     fb_dtsg: this.get('fb_dtsg')
                 };
 
-            ImageUtility.fetch(url, function(blob){
+            ImageUtility.fetch(url, _.bind(function(blob){
                 console.log('image fetched');
                 formData.append('sticker.png', blob);
                 for (var key in data){
@@ -45,16 +45,32 @@ define([
                     contentType: false,
                     processData: false,
                     type: 'POST',
-                    complete: function(jqXHR, textStatus){
+                    complete: _.bind(function(jqXHR, textStatus){
                         var response = jqXHR.responseText;
                         var fbid = response.match(/"fbid":([0-9]+),/)[1];
                         console.log('uploadCommentPhoto success');
-                    }
+                        this.postCommet(fbid);
+                    }, this)
                 });
-            });
+            }, this));
         },
-        postCommet: function(){
+        postCommet: function(fbid){
+            $.ajax({
+                url: 'https://www.facebook.com/ajax/ufi/add_comment.php',
+                data: {
 
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                complete: _.bind(function(jqXHR, textStatus){
+                    var response = jqXHR.responseText;
+                    var fbid = response.match(/"fbid":([0-9]+),/)[1];
+                    console.log('uploadCommentPhoto success');
+                    this.postCommet(fbid);
+                }, this)
+            });
         }
     });
 

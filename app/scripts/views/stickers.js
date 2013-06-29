@@ -25,48 +25,25 @@ define([
             'click .sticker': 'onStickerClick'
         },
         onStickerClick: function(e){
-            var element = $(e.currentTarget);
-            this.facebook.uploadCommentPhoto(element.attr('url'));
-            // console.log('onStickerClick');
-            // var element = $(e.currentTarget),
-            //     facebookCommentPhotoUploadUrl = 'https://www.facebook.com/ajax/ufi/upload/?__user=' + this.facebook.get('user_id') + '&fb_dtsg=' + this.facebook.get('fb_dtsg'),
-            //     formData = new FormData(),
-            //     data = {
-            //         source: 19,
-            //         profile_id: this.facebook.get('user_id'),
-            //         fb_dtsg: this.facebook.get('fb_dtsg')
-            //     };
-
-            // ImageUtility.fetch(element.attr('url'), function(blob){
-            //     console.log('image fetched');
-            //     formData.append('sticker.png', blob);
-            //     for (var key in data){
-            //         formData.append(key, data[key]);
-            //     }
-
-            //     $.ajax({
-            //         url: facebookCommentPhotoUploadUrl,
-            //         data: formData,
-            //         cache: false,
-            //         contentType: false,
-            //         processData: false,
-            //         type: 'POST',
-            //         error: function(error){
-            //             console.log('upload comment photo error');
-            //             console.log(error);
-            //         },
-            //         success: function(response){
-            //             console.log('upload comment photo success');
-            //             console.log(response);
-            //         }
-            //     });
-            // });
+            var stickerElement = $(e.currentTarget);
+            console.log(this.feedback_params);
+            // this.facebook.uploadCommentPhoto(element.attr('url'));
         },
         onStickerButtonClick: function(e){
             var stickerButton = $(e.currentTarget);
             var stickerSelectorOffset = this.getStickerSelectorOffset(stickerButton.offset(),
                                                                       stickerButton.width(),
                                                                       stickerButton.height());
+
+            $('form').each(_.bind(function(i, element){
+                if ($.contains(element, stickerButton[0])){
+                    var value = $(element).find('input[name="feedback_params"]').attr('value');
+                    this.feedback_params = JSON.parse(value);
+
+                    return;
+                }
+            }, this));
+
             this.renderStickerSelector(stickerSelectorOffset);
         },
         getStickerSelectorOffset: function(stickerButtonOffset, stickerButtonWidth, stickerButtonHeight){
