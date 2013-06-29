@@ -30,5 +30,12 @@ require(['jquery',
             el: $('body')
         });
         stickers.renderStickerButton();
+        $(window).bind('onpopstate', function(){
+            console.log('onpopstate');
+            stickers.renderStickerButton();
+        });
+        $('input[value="Comment"]').bind('click', function(){
+            stickers.renderStickerButton();
+        });
     });
 });

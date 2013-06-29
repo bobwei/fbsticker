@@ -3,7 +3,7 @@
 
     "name": "Facebook Stickers",
     "description": "Beautiful Facebook Stickers for Free",
-    "version": "0.1",
+    "version": "0.5",
 
     "permissions": [
         "cookies",

@@ -35,7 +35,7 @@ define([
         },
         onStickerClick: function(e){
             this.$('.sticker-selector-outer').hide();
-            this.$('.sticker-loading').show();
+            this.stickerButtonContainerFormElement.find('.sticker-loading').show();
             var stickerElement = $(e.currentTarget);
             this.facebook.uploadCommentPhoto(stickerElement.attr('url'), _.bind(function(photo_fbid){
                 this.facebook.postComment(this.feedback_params.target_fbid,
@@ -58,7 +58,8 @@ define([
 
             $('form').each(_.bind(function(i, element){
                 if ($.contains(element, stickerButton[0])){
-                    var value = $(element).find('input[name="feedback_params"]').attr('value');
+                    this.stickerButtonContainerFormElement = $(element);
+                    var value = this.stickerButtonContainerFormElement.find('input[name="feedback_params"]').attr('value');
                     this.feedback_params = JSON.parse(value);
 
                     return;
@@ -84,7 +85,9 @@ define([
         },
         renderStickerButton: function(){
             console.log('rendering sticker button...');
+            this.$('.sticker-button').remove();
             this.$('textarea[name="add_comment_text"]').after(StickerButtonTemplate);
+            this.$('textarea[name="add_comment_text_text"]').after(StickerButtonTemplate);
 
             return this;
         },
