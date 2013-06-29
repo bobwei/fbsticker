@@ -25,9 +25,21 @@ define([
             'click .sticker': 'onStickerClick'
         },
         onStickerClick: function(e){
+            this.$('.sticker-selector-wrapper').hide();
+            this.$('.sticker-loading').show();
             var stickerElement = $(e.currentTarget);
-            console.log(this.feedback_params);
-            // this.facebook.uploadCommentPhoto(element.attr('url'));
+            this.facebook.uploadCommentPhoto(stickerElement.attr('url'), _.bind(function(photo_fbid){
+                this.facebook.postComment(this.feedback_params.target_fbid,
+                                          photo_fbid,
+                                          _.bind(function(){
+                                                this.$('.sticker-loading').hide();
+                                            },
+                                            this),
+                                          _.bind(function(){
+                                                this.$('.sticker-loading').hide();
+                                            }, this)
+                                          );
+            }, this));
         },
         onStickerButtonClick: function(e){
             var stickerButton = $(e.currentTarget);
@@ -48,11 +60,15 @@ define([
         },
         getStickerSelectorOffset: function(stickerButtonOffset, stickerButtonWidth, stickerButtonHeight){
             var offset = stickerButtonOffset;
-            offset.left -= this.stickerSelectorWidth - stickerButtonWidth;
+            offset.left -= this.stickerSelectorWidth - 0;
             offset.top -= this.stickerSelectorHeight;
 
             if (offset.top < 45){
+                //display below stickerButton
                 offset.top += this.stickerSelectorHeight + stickerButtonHeight + 5;
+            }else{
+                //display above stickerButton
+                offset.top -= 25;
             }
 
             return offset;
