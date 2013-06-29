@@ -5,10 +5,12 @@ define([
     'text!../templates/sticker_button.html',
     'text!../templates/sticker_selector.html',
     '../models/facebook',
-    '../utils/image'
+    '../utils/image',
+    '../collections/stickers'
 ], function($, _, Backbone,
             StickerButtonTemplate, StickerSelectorTemplate,
-            Facebook, ImageUtility){
+            Facebook, ImageUtility,
+            StickersCollection){
     'use strict';
 
     var Stickers = Backbone.View.extend({
@@ -19,6 +21,9 @@ define([
             this.stickerSelectorHeight = 300;
             this.facebook = new Facebook();
             this.facebook.sync('read');
+
+            this.stickerCollection = new StickersCollection();
+            this.stickerCollection.fetch();
         },
         events: {
             'click .sticker-button': 'onStickerButtonClick',
@@ -91,7 +96,10 @@ define([
                 };
             }
             if (!this.$('.sticker-selector-wrapper').length){
-                this.$el.append(StickerSelectorTemplate);
+                this.$el.append(_.template(StickerSelectorTemplate)({
+                    _: _,
+                    stickerCollection: this.stickerCollection
+                }));
             }
             this.$('.sticker-selector-wrapper')
                 .css('top', '').css('left', '')
