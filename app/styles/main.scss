@@ -24,26 +24,36 @@
     opacity: 1;
 }
 
-.sticker-selector-wrapper{
+.sticker-selector-outer{
     display: none;
-    background-color: red;
-    width: 300px;
-    height: 300px;
     position: absolute;
-    background: rgb(219, 220, 223);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
-    padding: 10px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-    .sticker{
-        float: left;
-        width: 60px;
-        height: 60px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        cursor: pointer;
-    }
-    .sticker:hover{
-        background-color: #CCC;
+    .sticker-selector-wrapper{
+        // display: none;
+        background-color: red;
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        background: rgb(219, 220, 223);
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+        padding: 10px;
+        z-index: 1;
+
+        .sticker{
+            float: left;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+        .sticker:hover{
+            background-color: #CCC;
+        }
     }
 }
 

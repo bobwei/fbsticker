@@ -22,10 +22,14 @@ define([
         },
         events: {
             'click .sticker-button': 'onStickerButtonClick',
-            'click .sticker': 'onStickerClick'
+            'click .sticker': 'onStickerClick',
+            'click .sticker-selector-outer': 'onStickerSelectorBlur'
+        },
+        onStickerSelectorBlur: function(e){
+            this.$('.sticker-selector-outer').hide();
         },
         onStickerClick: function(e){
-            this.$('.sticker-selector-wrapper').hide();
+            this.$('.sticker-selector-outer').hide();
             this.$('.sticker-loading').show();
             var stickerElement = $(e.currentTarget);
             this.facebook.uploadCommentPhoto(stickerElement.attr('url'), _.bind(function(photo_fbid){
@@ -91,7 +95,8 @@ define([
             }
             this.$('.sticker-selector-wrapper')
                 .css('top', '').css('left', '')
-                .offset(offset).toggle();
+                .offset(offset);
+            this.$('.sticker-selector-outer').show();
 
             return this;
         }
