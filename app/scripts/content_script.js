@@ -29,6 +29,6 @@ require(['jquery',
         var stickers = new Stickers({
             el: $('body')
         });
-        stickers.render();
+        stickers.renderStickerButton();
     });
 });

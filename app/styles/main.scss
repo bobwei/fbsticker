@@ -9,8 +9,25 @@
 // }
 
 .sticker-button{
-    // background-color: red;
     position: absolute;
     right: 30px;
     top: 3px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.sticker-button:hover{
+    opacity: 1;
+}
+
+.sticker-button:active{
+    opacity: 1;
+}
+
+.sticker-selector-wrapper{
+    display: none;
+    background-color: red;
+    width: 300px;
+    height: 300px;
+    position: absolute;
 }
