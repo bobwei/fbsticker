@@ -30,12 +30,18 @@ require(['jquery',
             el: $('body')
         });
         stickers.renderStickerButton();
-        $(window).bind('onpopstate', function(){
-            console.log('onpopstate');
+
+        setInterval(function(){
             stickers.renderStickerButton();
-        });
-        $('input[value="Comment"]').bind('click', function(){
-            stickers.renderStickerButton();
-        });
+        }, 5000);
+        // var DOMSubtreeModifiedRef = null;
+        // $('body').bind('DOMSubtreeModified', function(e){
+        //     clearTimeout(DOMSubtreeModifiedRef);
+        //     DOMSubtreeModifiedRef = setTimeout(function(){
+        //         console.log('DOMSubtreeModified');
+        //         console.log(e);
+        //         stickers.renderStickerButton();
+        //     }, 1000);
+        // });
     });
 });

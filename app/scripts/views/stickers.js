@@ -70,15 +70,15 @@ define([
         },
         getStickerSelectorOffset: function(stickerButtonOffset, stickerButtonWidth, stickerButtonHeight){
             var offset = stickerButtonOffset;
-            offset.left -= this.stickerSelectorWidth - 0;
+            offset.left -= this.stickerSelectorWidth - 12;
             offset.top -= this.stickerSelectorHeight;
 
             if (offset.top < 45){
                 //display below stickerButton
-                offset.top += this.stickerSelectorHeight + stickerButtonHeight + 5;
+                offset.top += this.stickerSelectorHeight + stickerButtonHeight + 12;
             }else{
                 //display above stickerButton
-                offset.top -= 25;
+                offset.top -= 13;
             }
 
             return offset;

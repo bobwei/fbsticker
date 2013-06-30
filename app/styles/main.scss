@@ -9,9 +9,10 @@
 // }
 
 .sticker-button{
+    padding: 10px 0px 10px 10px;
     position: absolute;
     right: 30px;
-    top: 3px;
+    top: -7px;
     cursor: pointer;
     opacity: 0.8;
 }
@@ -41,7 +42,7 @@
         background: rgb(219, 220, 223);
         box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
         padding: 10px;
-        z-index: 1;
+        z-index: 10;
         overflow: scroll;
 
         .sticker{
