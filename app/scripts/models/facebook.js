@@ -31,8 +31,8 @@ define([
                     fb_dtsg: this.get('fb_dtsg')
                 };
 
-            ImageUtility.fetch(url, _.bind(function(blob){
-                console.log('image fetched');
+            ImageUtility.resize(url, _.bind(function(blob){
+                console.log('image fetched and resized');
                 formData.append('sticker.png', blob);
                 for (var key in data){
                     formData.append(key, data[key]);

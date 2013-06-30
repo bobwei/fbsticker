@@ -34,6 +34,7 @@ require(['jquery',
         setInterval(function(){
             stickers.renderStickerButton();
         }, 5000);
+
         // var DOMSubtreeModifiedRef = null;
         // $('body').bind('DOMSubtreeModified', function(e){
         //     clearTimeout(DOMSubtreeModifiedRef);

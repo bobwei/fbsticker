@@ -31,6 +31,7 @@
                 ],
             "js": [
                 //strange unsolved bug that some scripts have to be place here in order to execute
+                "app/bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.min.js",
                 "app/bower_components/jquery/jquery.js",
                 "app/bower_components/underscore/underscore.js",
                 "app/bower_components/backbone/backbone-min.js",
@@ -44,7 +45,7 @@
     "background": {
         // "scripts": ["background.js"]
         // for debug
-        // "page": "app/index.html"
+        "page": "app/index.html"
         // for production
         // "page": "dist/index.html"
     }
