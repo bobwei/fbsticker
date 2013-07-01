@@ -44,6 +44,10 @@ define([
         },
         onStickerSelectorBlur: function(){
             this.$('.sticker-selector-outer').hide();
+            clearTimeout(this.isStickerSelectorOpenedDelay);
+            this.isStickerSelectorOpenedDelay = setTimeout(function(){
+                window.isStickerSelectorOpened = false;
+            }, 10000);
         },
         onStickerClick: function(e){
             this.$('.sticker-selector-outer').hide();
@@ -63,6 +67,7 @@ define([
             }, this));
         },
         onStickerButtonClick: function(e){
+            window.isStickerSelectorOpened = true;
             var stickerButton = $(e.currentTarget);
             var stickerSelectorOffset = this.getStickerSelectorOffset(stickerButton.offset(),
                                                                       stickerButton.width(),

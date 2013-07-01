@@ -40,6 +40,7 @@ require(['jquery',
                 ctx.drawImage(img,
                               0, 0, img.width, img.height,
                               0, 0, STICKER_WIDTH, STICKER_HEIGHT);
+                // ctx.drawImage(img, 0, 0);
                 sendResponse({
                     dataURL: canvas.toDataURL()
                 });

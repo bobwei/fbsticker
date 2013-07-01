@@ -32,7 +32,9 @@ require(['jquery',
         stickers.renderStickerButton();
 
         setInterval(function(){
-            stickers.renderStickerButton();
+            if (!window.isStickerSelectorOpened){
+                stickers.renderStickerButton();
+            }
         }, 5000);
 
         // var DOMSubtreeModifiedRef = null;
