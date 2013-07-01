@@ -28,9 +28,21 @@ define([
         events: {
             'click .sticker-button': 'onStickerButtonClick',
             'click .sticker': 'onStickerClick',
-            'click .sticker-selector-outer': 'onStickerSelectorBlur'
+            'click .sticker-selector-outer': 'onStickerSelectorBlur',
+            'click .sticker-selector-wrapper': 'onStickerSelectorWrapperClick',
+            'click .navigation-bar .tabs .tab': 'onTabClick'
         },
-        onStickerSelectorBlur: function(e){
+        onTabClick: function(e){
+            this.$('.navigation-bar .tabs .tab-indicator').removeClass(function(index, klass){
+
+                return (klass.match(/select\d+/) || []).join(' ');
+            }).addClass('select' + $(e.currentTarget).attr('index'));
+        },
+        onStickerSelectorWrapperClick: function(){
+
+            return false;
+        },
+        onStickerSelectorBlur: function(){
             this.$('.sticker-selector-outer').hide();
         },
         onStickerClick: function(e){
@@ -70,7 +82,7 @@ define([
         },
         getStickerSelectorOffset: function(stickerButtonOffset, stickerButtonWidth, stickerButtonHeight){
             var offset = stickerButtonOffset;
-            offset.left -= this.stickerSelectorWidth - 12;
+            offset.left -= this.stickerSelectorWidth - 32;
             offset.top -= this.stickerSelectorHeight;
 
             if (offset.top < 45){
@@ -78,7 +90,7 @@ define([
                 offset.top += this.stickerSelectorHeight + stickerButtonHeight + 12;
             }else{
                 //display above stickerButton
-                offset.top -= 13;
+                offset.top -= 13 - 20;
             }
 
             return offset;
