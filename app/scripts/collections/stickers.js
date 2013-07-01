@@ -25,9 +25,10 @@ define([
             }
         },
         parse: function(response){
+            var packages = [760];
             var objects = _.filter(response.versions, function(obj){
 
-                return obj[0] === 760;
+                return packages.indexOf(obj[0]) > -1;
             });
 
             return objects;
