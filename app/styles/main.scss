@@ -64,18 +64,23 @@
                     float: left;
                     width: 33.33%;
                     cursor: pointer;
+                    position: relative;
+                    z-index: 1;
+                    -webkit-user-select: none;
                 }
 
                 .tab:hover{
-                    // background-color: white;
+                    background-color: white;
                     // background-image: -webkit-linear-gradient(top, #F5F5F5 0, #FCFCFC 100%);
                 }
 
                 .tab-indicator{
                     position: absolute;
+                    float: left;
+                    width: 33.33%;
                     height: 100%;
                     border-bottom: 3px solid green;
-                    -webkit-transition: all 0.25s ease-in-out;
+                    -webkit-transition: all 0.35s ease-in-out;
                 }
 
                 .tab-indicator.select0{
