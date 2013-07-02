@@ -24,11 +24,20 @@ define([
                 return $.ajax(params);
             }
         },
-        parse: function(response){
+        getDownloadedModels: function(){
             var packages = [760, 551];
+
+            return _.filter(this.models, function(model){
+
+                return packages.indexOf(model.get(0)) > -1;
+            });
+        },
+        parse: function(response){
+            // var packages = [760, 551];
             var objects = _.filter(response.versions, function(obj){
 
-                return packages.indexOf(obj[0]) > -1;
+                // return packages.indexOf(obj[0]) > -1;
+                return true;
             });
 
             return objects;

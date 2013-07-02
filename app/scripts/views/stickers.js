@@ -90,6 +90,7 @@ define([
                                                                       stickerButton.width(),
                                                                       stickerButton.height());
 
+            //find the container form that contains current clicked sticker button
             $('form').each(_.bind(function(i, element){
                 if ($.contains(element, stickerButton[0])){
                     this.stickerButtonContainerFormElement = $(element);
