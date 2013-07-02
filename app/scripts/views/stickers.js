@@ -48,6 +48,7 @@ define([
             this.isStickerSelectorOpenedDelay = setTimeout(_.bind(function(){
                 window.isStickerSelectorOpened = false;
             }, this), 10000);
+            $('body').css('overflow', '');
         },
         onStickerClick: function(e){
             this.$('.sticker-selector-outer').hide();
@@ -73,9 +74,12 @@ define([
                                             }, this)
                                           );
             }, this));
+            $('body').css('overflow', '');
         },
         onStickerButtonClick: function(e){
             window.isStickerSelectorOpened = true;
+            $('body').css('overflow', 'hidden');
+
             var stickerButton = $(e.currentTarget);
             var stickerSelectorOffset = this.getStickerSelectorOffset(stickerButton.offset(),
                                                                       stickerButton.width(),
