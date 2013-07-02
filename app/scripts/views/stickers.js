@@ -4,11 +4,12 @@ define([
     'backbone',
     'text!../templates/sticker_button.html',
     'text!../templates/sticker_selector.html',
+    'text!../templates/sticker_shop.html',
     '../models/facebook',
     '../utils/image',
     '../collections/stickers'
 ], function($, _, Backbone,
-            StickerButtonTemplate, StickerSelectorTemplate,
+            StickerButtonTemplate, StickerSelectorTemplate, StickerShopTemplate,
             Facebook, ImageUtility,
             StickersCollection){
     'use strict';
@@ -24,6 +25,9 @@ define([
 
             this.stickerCollection = new StickersCollection();
             this.stickerCollection.fetch();
+
+            this.stickerShopOffset = 0;
+            this.stickerShopLimit = 25;
         },
         events: {
             'click .sticker-button': 'onStickerButtonClick',
@@ -31,6 +35,18 @@ define([
             'click .sticker-selector-outer': 'onStickerSelectorBlur',
             'click .sticker-selector-wrapper': 'onStickerSelectorWrapperClick',
             'click .navigation-bar .tabs .tab': 'onTabClick'
+        },
+        onStickerShopScroll: function(e){
+            clearTimeout(this.stickerShopScrollDelay);
+            this.stickerShopScrollDelay = setTimeout(_.bind(function(){
+                var currentTarget = e.currentTarget;
+                console.log('this.stickerShopScrollDelay');
+                console.log('scrollHeight = ' + currentTarget.scrollHeight + ', scrollTop = ' + $(currentTarget).scrollTop());
+                if (currentTarget.scrollHeight - $(currentTarget).scrollTop() < 470){
+                    this.renderStickerShop(this.stickerShopOffset);
+                    this.stickerShopOffset += this.stickerShopLimit;
+                }
+            }, this), 800);
         },
         onTabClick: function(e){
             //update .tab-indicator and .content-view scroll position
@@ -42,6 +58,12 @@ define([
             }).addClass('select' + index);
 
             this.$('.content-view').children().hide().eq(index).show();
+
+            if (index === '1'){
+                this.stickerShopOffset = 0;
+                this.renderStickerShop(this.stickerShopOffset);
+                this.stickerShopOffset += this.stickerShopLimit;
+            }
         },
         onStickerSelectorWrapperClick: function(){
 
@@ -145,6 +167,27 @@ define([
             this.$('.sticker-selector-outer').show();
 
             return this;
+        },
+        renderStickerShop: function(offset){
+            var limit = 25;
+            if (!offset){
+                offset = 0;
+            }
+            if (!offset){
+                this.$('.stickers-shop').html(_.template(StickerShopTemplate)({
+                    _: _,
+                    stickerCollection: this.stickerCollection,
+                    offset: offset,
+                    limit: limit
+                })).unbind('scroll').bind('scroll', this.onStickerShopScroll);
+            }else{
+                this.$('.stickers-shop').append(_.template(StickerShopTemplate)({
+                    _: _,
+                    stickerCollection: this.stickerCollection,
+                    offset: offset,
+                    limit: limit
+                }));
+            }
         }
     });
 
