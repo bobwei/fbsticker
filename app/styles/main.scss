@@ -80,26 +80,38 @@
                     width: 33.33%;
                     height: 100%;
                     border-bottom: 3px solid green;
-                    -webkit-transition: all 0.35s ease-in-out;
+                    -webkit-transition: all 0.3s ease-in-out;
                 }
 
                 .tab-indicator.select0{
                     left: 0;
+                    // -webkit-transform: translateX(0);
                 }
 
                 .tab-indicator.select1{
                     left: 33.33%;
+                    // -webkit-transform: translateX(100%);
                 }
 
                 .tab-indicator.select2{
                     left: 66.66%;
+                    // -webkit-transform: translateX(200%);
                 }
             }
         }
 
+        .content-view{
+            // width: 1000%;
+            // position: relative;
+            // -webkit-transition: all 0.25s ease-in-out;
+        }
+
         .stickers{
+            width: 100%;
             height: 270px;
             overflow: auto;
+            float: left;
+            box-sizing: border-box;
 
             .sticker{
                 float: left;

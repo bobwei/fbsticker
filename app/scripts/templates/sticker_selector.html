@@ -14,12 +14,16 @@
                 <div class="tab-indicator select0"></div>
             </div>
         </div>
-        <div class="stickers clearfix">
-            <% _.each(stickerCollection.models, function(obj, i){ %>
-                <% _.each(_.range(obj.get('2')[0][0], obj.get('2')[0][0] + obj.get('2')[0][1]), function(j, k){ %>
-                    <div class="sticker" url="http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/stickers/<%= j %>.png" style="background-image: url(http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/stickers/<%= j %>.png);"></div>
+        <div class="content-view clearfix">
+            <div class="stickers clearfix">
+                <% _.each(stickerCollection.models, function(obj, i){ %>
+                    <% _.each(_.range(obj.get('2')[0][0], obj.get('2')[0][0] + obj.get('2')[0][1]), function(j, k){ %>
+                        <div class="sticker" url="http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/stickers/<%= j %>.png" style="background-image: url(http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/stickers/<%= j %>.png);"></div>
+                    <% }) %>
                 <% }) %>
-            <% }) %>
+            </div>
+            <div class="stickers-shop"></div>
+            <div class="about"></div>
         </div>
     </div>
 </div>

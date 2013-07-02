@@ -33,10 +33,15 @@ define([
             'click .navigation-bar .tabs .tab': 'onTabClick'
         },
         onTabClick: function(e){
+            //update .tab-indicator and .content-view scroll position
+            var index = $(e.currentTarget).attr('index');
+
             this.$('.navigation-bar .tabs .tab-indicator').removeClass(function(index, klass){
 
                 return (klass.match(/select\d+/) || []).join(' ');
-            }).addClass('select' + $(e.currentTarget).attr('index'));
+            }).addClass('select' + index);
+
+            this.$('.content-view').children().hide().eq(index).show();
         },
         onStickerSelectorWrapperClick: function(){
 
@@ -48,7 +53,7 @@ define([
             this.isStickerSelectorOpenedDelay = setTimeout(_.bind(function(){
                 window.isStickerSelectorOpened = false;
             }, this), 10000);
-            $('body').css('overflow', '');
+            //$('body').css('overflow', '');
         },
         onStickerClick: function(e){
             this.$('.sticker-selector-outer').hide();
@@ -74,11 +79,11 @@ define([
                                             }, this)
                                           );
             }, this));
-            $('body').css('overflow', '');
+            //$('body').css('overflow', '');
         },
         onStickerButtonClick: function(e){
             window.isStickerSelectorOpened = true;
-            $('body').css('overflow', 'hidden');
+            // $('body').css('overflow', 'hidden');
 
             var stickerButton = $(e.currentTarget);
             var stickerSelectorOffset = this.getStickerSelectorOffset(stickerButton.offset(),
