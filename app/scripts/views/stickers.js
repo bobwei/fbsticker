@@ -45,9 +45,9 @@ define([
         onStickerSelectorBlur: function(){
             this.$('.sticker-selector-outer').hide();
             clearTimeout(this.isStickerSelectorOpenedDelay);
-            this.isStickerSelectorOpenedDelay = setTimeout(function(){
+            this.isStickerSelectorOpenedDelay = setTimeout(_.bind(function(){
                 window.isStickerSelectorOpened = false;
-            }, 10000);
+            }, this), 10000);
         },
         onStickerClick: function(e){
             this.$('.sticker-selector-outer').hide();
@@ -57,11 +57,19 @@ define([
                 this.facebook.postComment(this.feedback_params.target_fbid,
                                           photo_fbid,
                                           _.bind(function(){
-                                                this.$('.sticker-loading').hide();
+                                                clearTimeout(this.isStickerSelectorOpenedDelay);
+                                                this.isStickerSelectorOpenedDelay = setTimeout(_.bind(function(){
+                                                    this.$('.sticker-loading').hide();
+                                                    window.isStickerSelectorOpened = false;
+                                                }, this), 3000);
                                             },
                                             this),
                                           _.bind(function(){
-                                                this.$('.sticker-loading').hide();
+                                                clearTimeout(this.isStickerSelectorOpenedDelay);
+                                                this.isStickerSelectorOpenedDelay = setTimeout(_.bind(function(){
+                                                    this.$('.sticker-loading').hide();
+                                                    window.isStickerSelectorOpened = false;
+                                                }, this), 3000);
                                             }, this)
                                           );
             }, this));
