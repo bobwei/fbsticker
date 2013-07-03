@@ -1,6 +1,10 @@
 <% _.each(stickerCollection.models.slice(offset, offset + limit), function(obj, i){ %>
     <div class="sticker">
-        <img class="preview" src="http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/thumbnail_shop.png">
-        <div class="download">下載</div>
+        <div class="clearfix">
+            <div class="thumbnail" style="background-image: url(http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/thumbnail_shop.png);">
+                <div class="download">下載</div>
+            </div>
+            <div class="preview" style="background-image: url(http://dl.stickershop.line.naver.jp/products/0/0/<%= obj.get(1) %>/<%= obj.get(0) %>/android/preview.png);"></div>
+        </div>
     </div>
 <% }) %>

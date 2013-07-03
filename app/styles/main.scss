@@ -114,20 +114,37 @@
             box-sizing: border-box;
 
             .sticker{
-                height: 60px;
-                margin-top: 15px;
-                padding: 0px 15px;
+                height: auto;
+                margin: 10px;
+                padding: 10px;
                 box-sizing: border-box;
+                box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+
+                .thumbnail{
+                    float: left;
+                    width: 60px;
+                    height: auto;
+                    padding-top: 63px;
+                    background-size: 55px;
+                    background-repeat: no-repeat;
+                }
 
                 .preview{
-                    max-height: 100%;
+                    float: right;
+                    width: 170px;
+                    height: 85px;
+                    // margin: 0 auto;
+                    background-size: cover;
+                    // background-position-y: 4px;
+                    background-repeat: no-repeat;
                 }
 
                 .download{
-                    float: right;
+                    // float: right;
+                    text-align: center;
                     background-image: -webkit-linear-gradient(top, rgb(245, 245, 245) 0px, rgb(236, 236, 236) 100%);
-                    padding: 5px 8px;
-                    margin: 15px 6px 6px 6px;
+                    padding: 4px 0px;
+                    // margin: 6px 0;
                     box-sizing: border-box;
                     border-radius: 5px;
                     font-size: 11px;

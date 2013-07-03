@@ -40,13 +40,11 @@ define([
             clearTimeout(this.stickerShopScrollDelay);
             this.stickerShopScrollDelay = setTimeout(_.bind(function(){
                 var currentTarget = e.currentTarget;
-                console.log('this.stickerShopScrollDelay');
-                console.log('scrollHeight = ' + currentTarget.scrollHeight + ', scrollTop = ' + $(currentTarget).scrollTop());
                 if (currentTarget.scrollHeight - $(currentTarget).scrollTop() < 470){
                     this.renderStickerShop(this.stickerShopOffset);
                     this.stickerShopOffset += this.stickerShopLimit;
                 }
-            }, this), 800);
+            }, this), 300);
         },
         onTabClick: function(e){
             //update .tab-indicator and .content-view scroll position
