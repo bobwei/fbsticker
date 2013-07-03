@@ -31,10 +31,23 @@ define([
         },
         events: {
             'click .sticker-button': 'onStickerButtonClick',
-            'click .sticker': 'onStickerClick',
+            'click .stickers .sticker': 'onStickerClick',
             'click .sticker-selector-outer': 'onStickerSelectorBlur',
             'click .sticker-selector-wrapper': 'onStickerSelectorWrapperClick',
-            'click .navigation-bar .tabs .tab': 'onTabClick'
+            'click .navigation-bar .tabs .tab': 'onTabClick',
+            'click .download': 'onDownloadClick'
+        },
+        onDownloadClick: function(e){
+            var button = $(e.currentTarget);
+
+            var packageId = button.attr('packageId');
+            var key = 'download:packages';
+            var packages = JSON.parse((localStorage.getItem(key) || '[]'));
+            packages.push(packageId);
+            localStorage.setItem(key, JSON.stringify(packages));
+            button.html('已下載');
+
+            return false;
         },
         onStickerShopScroll: function(e){
             clearTimeout(this.stickerShopScrollDelay);
