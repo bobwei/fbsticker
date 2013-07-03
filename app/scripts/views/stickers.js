@@ -5,11 +5,13 @@ define([
     'text!../templates/sticker_button.html',
     'text!../templates/sticker_selector.html',
     'text!../templates/sticker_shop.html',
+    'text!../templates/stickers.html',
     '../models/facebook',
     '../utils/image',
     '../collections/stickers'
 ], function($, _, Backbone,
-            StickerButtonTemplate, StickerSelectorTemplate, StickerShopTemplate,
+            StickerButtonTemplate, StickerSelectorTemplate,
+            StickerShopTemplate, StickersTemplate,
             Facebook, ImageUtility,
             StickersCollection){
     'use strict';
@@ -70,7 +72,9 @@ define([
 
             this.$('.content-view').children().hide().eq(index).show();
 
-            if (index === '1'){
+            if (index === '0'){
+                this.renderStickerSelector();
+            }else if (index === '1'){
                 this.stickerShopOffset = 0;
                 this.renderStickerShop(this.stickerShopOffset);
                 this.stickerShopOffset += this.stickerShopLimit;
@@ -160,21 +164,22 @@ define([
             return this;
         },
         renderStickerSelector: function(offset){
-            if (!offset){
-                offset = {
-                    top: 0,
-                    left: 0
-                };
-            }
+            //render sticker-selector-wrapper
             if (!this.$('.sticker-selector-wrapper').length){
-                this.$el.append(_.template(StickerSelectorTemplate)({
-                    _: _,
-                    stickerCollection: this.stickerCollection
-                }));
+                this.$el.append(_.template(StickerSelectorTemplate));
             }
-            this.$('.sticker-selector-wrapper')
-                .css('top', '').css('left', '')
-                .offset(offset);
+
+            //render stickers
+            this.$('.stickers').html(_.template(StickersTemplate)({
+                _: _,
+                models: this.stickerCollection.getDownloadedModels()
+            }));
+
+            if (offset){
+                this.$('.sticker-selector-wrapper')
+                    .css('top', '').css('left', '')
+                    .offset(offset);
+            }
             this.$('.sticker-selector-outer').show();
 
             return this;

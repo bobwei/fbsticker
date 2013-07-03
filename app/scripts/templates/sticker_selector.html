@@ -16,11 +16,6 @@
         </div>
         <div class="content-view clearfix">
             <div class="stickers clearfix">
-                <% _.each(stickerCollection.getDownloadedModels(), function(model, i){ %>
-                    <% _.each(_.range(model.get('2')[0][0], model.get('2')[0][0] + model.get('2')[0][1]), function(j, k){ %>
-                        <div class="sticker" url="http://dl.stickershop.line.naver.jp/products/0/0/<%= model.get(1) %>/<%= model.get(0) %>/android/stickers/<%= j %>.png" style="background-image: url(http://dl.stickershop.line.naver.jp/products/0/0/<%= model.get(1) %>/<%= model.get(0) %>/android/stickers/<%= j %>.png);"></div>
-                    <% }) %>
-                <% }) %>
             </div>
             <div class="stickers-shop">
             </div>
